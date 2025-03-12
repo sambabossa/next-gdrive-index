@@ -1,5 +1,5 @@
 import { type z } from "zod";
-import { BASE_URL } from "~/constant";
+import { BASE_URL, IS_DEV } from "~/constant";
 
 import { type Schema_Config } from "~/types/schema";
 
@@ -17,7 +17,7 @@ const config: z.input<typeof Schema_Config> = {
    * @default process.env.NEXT_PUBLIC_DOMAIN
    * @fallback process.env.NEXT_PUBLIC_VERCEL_URL
    */
-  basePath: `https://${BASE_URL}`,
+  basePath: IS_DEV ? "http://localhost:3000" : `https://${BASE_URL}`,
 
   /**
    * Show deploy guide dropdown on navbar
@@ -47,7 +47,7 @@ const config: z.input<typeof Schema_Config> = {
      * Then, copy the folder id and paste it here
      */
     rootFolder:
-      "468d88ce135b6270d1194ae253edb26a42aa2b90fcf5631f6d6153aebd04cb053c5583c27ed22634ac2d51194880cd7464;8e9b36c334a57e9731c658ca",
+      "29de92c9d2c67f5069dc8a65835839e83d8544b0982e8d3bda8c19bca4df2f0f8be920a5896ede80b3bedc851c0d2b1f2d;a53f8d1d3175b17b227d2843",
 
     /**
      * If your rootfolder inside a shared drive, you NEED to set this to true
@@ -137,7 +137,7 @@ const config: z.input<typeof Schema_Config> = {
      *
      * Default: 4MB
      */
-    maxFileSize: 3145728,
+    maxFileSize: 4194304,
 
     /**
      * Allow user to download protected file without password.
